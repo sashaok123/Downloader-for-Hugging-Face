@@ -58,7 +58,7 @@ def get_download_links(url):
     download_links = []
     for link in soup.find_all("a"):
         href = link.get("href")
-        if href and any(href.endswith(ext) for ext in (".ckpt", ".safetensors", ".yaml", ".bin", ".pt")):
+        if href and any(href.endswith(ext) for ext in (".ckpt", ".safetensors", ".yaml", ".bin", ".pt", ".pth", ".json")):
             download_links.append("https://huggingface.co" + href.replace("/blob", "/resolve"))
 
     return download_links
