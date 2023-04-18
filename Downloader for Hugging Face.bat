@@ -1,4 +1,7 @@
 @echo off
 
 call venv\Scripts\activate.bat
-python.exe lib/download-model.py %*
+pip install pywin32
+pip install beautifulsoup4
+python.exe download-model.py %*
+pause
