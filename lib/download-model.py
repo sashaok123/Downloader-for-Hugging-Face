@@ -64,6 +64,7 @@ def get_download_links(url):
     return download_links
 
 clear_console()
+
 def main():
     current_dir = os.path.abspath(os.getcwd())
     create_shortcut(current_dir)
@@ -89,7 +90,13 @@ def main():
         file_base, file_ext = os.path.splitext(file_name)
         print(f"{i}: {file_base}{file_ext}")
 
-    selected_files = input("\nEnter the numbers of the files you want to download (separated by spaces): ").split(' ')
+    # Добавляем опцию выбора "скачать все файлы"
+    selected_files = input("\nEnter the numbers of the files you want to download (separated by spaces) or type 'all' to download all files: ").strip().lower()
+
+    if selected_files == 'all':
+        selected_files = [str(i) for i in range(1, len(unique_download_links) + 1)]
+    else:
+        selected_files = selected_files.split(' ')
 
     parent_folder = Path(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
     output_folder = parent_folder / "Downloaded models" / model_name
